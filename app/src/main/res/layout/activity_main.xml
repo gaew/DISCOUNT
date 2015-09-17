@@ -1,12 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
-<ScrollView
+
+    <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000000">
+        android:background="#004040">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,51 +16,65 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/curvetop"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
-               android:text="ราคาสุทธิ"/>
+               android:text="------ราคาสุทธิ-------"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
-                android:text="ส่วนลด"/>
+                android:text="------ส่วนลด------"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/curvebutton"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
-                android:id="@+id/result_price"/>
+                android:layout_margin="5dp"
+                android:background="#BDBDBD"
+                android:textSize="30dp"
+                android:id="@+id/result_price" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
+                android:layout_margin="5dp"
+                android:background="#BDBDBD"
+                android:textSize="30dp"
                 android:id="@+id/result_discount"/>
 
         </LinearLayout>
 
 
-        <LinearLayout
+ <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+     android:baselineAligned="false"
     android:orientation="horizontal">
 
+         <RelativeLayout
+             android:layout_width="0dp"
+             android:layout_height="150dp"
+             android:layout_weight="1">
+
     <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-       android:layout_weight="1">
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -82,10 +97,23 @@
             android:rotation="-90" />
     </FrameLayout>
 
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                 android:textSize="30dp"
+                 android:textColor="#FFFF00"
+                 android:id="@+id/price_show_inring"/>
+</RelativeLayout>
+
+         <RelativeLayout
+    android:layout_width="0dp"
+    android:layout_height="150dp"
+    android:layout_weight="1">
     <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_weight="1">
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -108,6 +136,16 @@
             android:rotation="-90" />
     </FrameLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="30dp"
+        android:textColor="#FFFF00"
+        android:id="@+id/discount_show_inring"/>
+</RelativeLayout>
+
+
 
 </LinearLayout>
 
@@ -115,7 +153,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal">
@@ -123,45 +160,48 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
-
-                android:text="ใส่ราคา"/>
+                android:text=""/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:inputType="numberDecimal"
-                android:background="#A7FFEB"
+                android:background="@drawable/edt"
                 android:id="@+id/price_input"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
-                android:text="บาท"/>
+                android:textColor="#ffffff"
+                android:text="  บาท"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
 
             <Switch
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/swith_s"
-                android:textOff="%"
-                android:textOn="บาท"
-                android:layout_weight="1" />
+                android:textOff="     %"
+                android:textOn="บาท" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="GO"
+            android:textSize="30dp"
+            android:background="@drawable/calbotton"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal">
@@ -169,22 +209,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
+                android:textColor="#ffffff"
                 android:text="ส่วนลดหลัก"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#A7FFEB"
+                android:background="@drawable/edt"
                 android:inputType="numberDecimal"
                 android:id="@+id/percent_int"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00BFA5"
                 android:id="@+id/index_unit"
-                android:text="%"/>
+                android:textColor="#ffffff"
+                android:text="     %"/>
 
         </LinearLayout>
 
@@ -194,14 +234,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn"
-            android:text="คำนวนส่วนลด"
-            android:layout_alignParentBottom="true"
-            />
 
     </LinearLayout>
 </ScrollView>

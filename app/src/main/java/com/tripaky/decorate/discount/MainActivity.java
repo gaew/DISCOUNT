@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     public String result_p, result_d, price, disp1, disp2, disp3, disp4, disb1, disb2, disb3, disb4 = "1";
     public static Double result;
-    public TextView Result_price, Result_discount, unt;
+    public TextView Result_price, Result_discount, unt,priceShow,discountShow;
     public EditText Input, price_input, field1, field2, field3, field4;
     public Switch swith;
     public boolean switch_chood;
@@ -41,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.circle_progress_bar);
         disProgressBar = (ProgressBar) findViewById(R.id.circle_progress_bar2);
 
-        Button btn = (Button) findViewById(R.id.btn);
+        Button btn = (Button) findViewById(R.id.button);
 
         Result_price = (TextView) findViewById(R.id.result_price);
         Result_discount = (TextView) findViewById(R.id.result_discount);
         unt = (TextView) findViewById(R.id.index_unit);
+        priceShow = (TextView) findViewById(R.id.price_show_inring);
+        discountShow = (TextView) findViewById(R.id.discount_show_inring);
 
         Input = (EditText) findViewById(R.id.percent_int);
         price_input = (EditText) findViewById(R.id.price_input);
@@ -95,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 read_discount();
                 cal_discount();
 
-                Result_price.setText( String.format( "%.2f", price_out ) );
-                Result_discount.setText( String.format("%.2f",(price_in-price_out)));
+                Result_price.setText( String.format( "%.2f"+"฿", price_out ) );
+                Result_discount.setText( String.format("%.2f"+"฿",(price_in-price_out)));
                 play1();
                 play2();
             }
@@ -109,12 +111,13 @@ public class MainActivity extends AppCompatActivity {
             int progressStatus = 0;
 
             public void run() {
-                Double result =  price_out/price_in*100;
-                int go = result.intValue();
+              //  Double result =  price_out/price_in*100;
+                int go = ( (Double) Math.ceil( price_out/price_in*100 ) ).intValue();
+               // int go = result.intValue();
                 while (progressStatus < go) {
-                    progressStatus += 5;
+                    progressStatus += 1;
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -123,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         public void run() {
                             mProgressBar.setProgress(progressStatus);
+                            priceShow.setText(""+progressStatus+"%");
 
                             i++;
                         }
@@ -140,12 +144,13 @@ public class MainActivity extends AppCompatActivity {
             int progressStatus = 0;
 
             public void run() {
-                Double result = (price_in-price_out)/price_in*100;
-                int go = result.intValue();
+              //  Double result = (price_in-price_out)/price_in*100;
+                int go = ( (Double) Math.ceil((price_in-price_out)/price_in*100 )).intValue();
+              //  int go = result.intValue();
                 while (progressStatus < go) {
-                    progressStatus += 5;
+                    progressStatus += 1;
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -153,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         public void run() {
                             disProgressBar.setProgress(progressStatus);
+                            discountShow.setText("" + progressStatus +"%");
                             i++;
                         }
                     });
