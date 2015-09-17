@@ -261,14 +261,19 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 if (!Input.getText().toString().trim().isEmpty()) {
                     discount1 = Double.parseDouble(Input.getText().toString());
-                }
+                }else discount1 = 0.0;
                 break;
             case 1:
                 if (!Input.getText().toString().trim().isEmpty()) {
                     discount1 = Double.parseDouble(Input.getText().toString());
-                }
+                }else
                 if (!field1.getText().toString().trim().isEmpty()) {
                     discount2 = Double.parseDouble(field1.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
                 }
                 break;
             case 2:
@@ -280,6 +285,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!field2.getText().toString().trim().isEmpty()) {
                     discount3 = Double.parseDouble(field2.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
+                }else if(field2.getText().toString().trim().isEmpty()){
+                    discount3 = 0.0;
                 }
                 break;
             case 3:
@@ -294,6 +306,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!field3.getText().toString().trim().isEmpty()) {
                     discount4 = Double.parseDouble(field3.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
+                }else if(field2.getText().toString().trim().isEmpty()){
+                    discount3 = 0.0;
+                }else if(field3.getText().toString().trim().isEmpty()){
+                    discount4 = 0.0;
                 }
                 break;
             case 4:
@@ -311,6 +332,18 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!field4.getText().toString().trim().isEmpty()) {
                     discount5 = Double.parseDouble(field4.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
+                }else if(field2.getText().toString().trim().isEmpty()){
+                    discount3 = 0.0;
+                }else if(field3.getText().toString().trim().isEmpty()){
+                    discount4 = 0.0;
+                }
+                else if(field4.getText().toString().trim().isEmpty()){
+                    discount5 = 0.0;
                 }
                 break;
         }

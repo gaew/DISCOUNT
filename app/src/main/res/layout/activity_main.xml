@@ -6,7 +6,7 @@
     <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-        android:background="#004040">
+        android:background="#313131">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +25,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-               android:text="------ราคาสุทธิ-------"/>
+               android:textAlignment="center"
+               android:text="ราคาสุทธิ"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="------ส่วนลด------"/>
+                android:textAlignment="center"
+                android:text="ส่วนลด"/>
 
         </LinearLayout>
 
@@ -103,7 +105,7 @@
                  android:layout_height="wrap_content"
                  android:layout_centerInParent="true"
                  android:textSize="30dp"
-                 android:textColor="#FFFF00"
+                 android:textColor="#FFFFFF"
                  android:id="@+id/price_show_inring"/>
 </RelativeLayout>
 
@@ -132,7 +134,7 @@
             android:layout_height="match_parent"
             android:indeterminate="false"
             android:max="100"
-            android:progressDrawable="@drawable/circle_progress_foreground"
+            android:progressDrawable="@drawable/circle_progress_foreground2"
             android:rotation="-90" />
     </FrameLayout>
 
@@ -141,7 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="30dp"
-        android:textColor="#FFFF00"
+        android:textColor="#FFFFFF"
         android:id="@+id/discount_show_inring"/>
 </RelativeLayout>
 
@@ -153,27 +155,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:background="#64FFDA"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text=""/>
+
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:inputType="numberDecimal"
-                android:background="@drawable/edt"
+                android:background="#fff"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:textAlignment="center"
                 android:id="@+id/price_input"/>
-            <TextView
+            <EditText
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#ffffff"
-                android:text="  บาท"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#fff"
+                android:hint="บาท"/>
         </LinearLayout>
 
             <Switch
@@ -186,16 +192,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
             android:id="@+id/button"
-            android:stateListAnimator="@null"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
             android:text="GO"
-            android:textSize="30dp"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
             android:background="@drawable/calbotton"
-            android:layout_centerInParent="true"/>
+            android:layout_margin="15dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="right|bottom"/>
     </RelativeLayout>
 
 
@@ -204,6 +210,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
