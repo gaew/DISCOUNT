@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void run() {
               //  Double result = (price_in-price_out)/price_in*100;
-                int go = ( (Double) Math.ceil((price_in-price_out)/price_in*100 )).intValue();
+                int go = ( (Double) ((price_in-price_out)/price_in*100 )).intValue();
               //  int go = result.intValue();
                 while (progressStatus < go) {
                     progressStatus += 1;
