@@ -1,25 +1,22 @@
 package com.tripaky.decorate.discount;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.view.View.OnClickListener;
-import android.os.Handler;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.text.DecimalFormat;
-import java.text.Format;
 
 public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressBar, disProgressBar;
@@ -353,7 +350,9 @@ public class MainActivity extends AppCompatActivity {
     private void cal_discount(){
         if (!swith.isChecked())///%
         {
-            price_in=Double.parseDouble(price_input.getText().toString());
+            if (!price_input.getText().toString().trim().isEmpty()) {
+                price_in=Double.parseDouble(price_input.getText().toString());
+            }else  Toast.makeText(getApplicationContext(), "กรอกราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
             price_out = price_in*(100-discount1)/100;
             price_out = price_out*(100-discount2)/100;
             price_out = price_out*(100-discount3)/100;
