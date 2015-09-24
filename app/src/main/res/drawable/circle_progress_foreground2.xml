@@ -7,8 +7,8 @@
             android:thickness="15dp">
 
             <gradient
-                android:startColor="#0277BD"
-                android:endColor="#0277BD"
+                android:startColor="#f40400"
+                android:endColor="#f40400"
                 android:type="sweep" />
         </shape>
 

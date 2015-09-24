@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 if ((!price_input.getText().toString().trim().isEmpty())&&(!Input.getText().toString().trim().isEmpty())) {
                     price = price_input.getText().toString();
                 } else
-                    Toast.makeText(getApplicationContext(), "กรอกราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "กรุณาใส่ราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
 
                 read_discount();
                 cal_discount();
@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if (!price_input.getText().toString().trim().isEmpty()) {
                 price_in=Double.parseDouble(price_input.getText().toString());
-            }else  Toast.makeText(getApplicationContext(), "กรอกราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
+            }else  Toast.makeText(getApplicationContext(), "กรุณาใส่ราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
             price_out = price_in*(100-discount1)/100;
             price_out = price_out*(100-discount2)/100;
             price_out = price_out*(100-discount3)/100;

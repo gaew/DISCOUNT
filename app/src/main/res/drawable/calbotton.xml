@@ -98,19 +98,12 @@
 
 
 
-            <item android:id="@android:id/mask">
+            <item >
                 <shape android:shape="oval">
-                    <solid android:color="#FFBB00" />
+                    <solid android:color="#ff9500" />
                 </shape>
             </item>
-            <item>
-                <shape android:shape="oval">
 
-                    <solid android:color="#FF5722" />
-
-
-                </shape>
-            </item>
 
 
 
