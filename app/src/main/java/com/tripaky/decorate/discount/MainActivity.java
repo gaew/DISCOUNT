@@ -1,32 +1,29 @@
 package com.tripaky.decorate.discount;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.view.View.OnClickListener;
-import android.os.Handler;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.text.DecimalFormat;
-import java.text.Format;
 
 public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressBar, disProgressBar;
     private Handler handler = new Handler();
     public String result_p, result_d, price, disp1, disp2, disp3, disp4, disb1, disb2, disb3, disb4 = "1";
     public static Double result;
-    public TextView Result_price, Result_discount, unt;
+    public TextView Result_price, Result_discount, unt,priceShow,discountShow;
     public EditText Input, price_input, field1, field2, field3, field4;
     public Switch swith;
     public boolean switch_chood;
@@ -41,11 +38,13 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.circle_progress_bar);
         disProgressBar = (ProgressBar) findViewById(R.id.circle_progress_bar2);
 
-        Button btn = (Button) findViewById(R.id.btn);
+        Button btn = (Button) findViewById(R.id.button);
 
         Result_price = (TextView) findViewById(R.id.result_price);
         Result_discount = (TextView) findViewById(R.id.result_discount);
         unt = (TextView) findViewById(R.id.index_unit);
+        priceShow = (TextView) findViewById(R.id.price_show_inring);
+        discountShow = (TextView) findViewById(R.id.discount_show_inring);
 
         Input = (EditText) findViewById(R.id.percent_int);
         price_input = (EditText) findViewById(R.id.price_input);
@@ -90,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 if ((!price_input.getText().toString().trim().isEmpty())&&(!Input.getText().toString().trim().isEmpty())) {
                     price = price_input.getText().toString();
                 } else
-                    Toast.makeText(getApplicationContext(), "กรอกราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "กรุณาใส่ราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
 
                 read_discount();
                 cal_discount();
 
-                Result_price.setText( String.format( "%.2f", price_out ) );
-                Result_discount.setText( String.format("%.2f",(price_in-price_out)));
+                Result_price.setText( String.format( "%.2f"+"฿", price_out ) );
+                Result_discount.setText( String.format("%.2f"+"฿",(price_in-price_out)));
                 play1();
                 play2();
             }
@@ -109,12 +108,13 @@ public class MainActivity extends AppCompatActivity {
             int progressStatus = 0;
 
             public void run() {
-                Double result =  price_out/price_in*100;
-                int go = result.intValue();
+              //  Double result =  price_out/price_in*100;
+                int go = ( (Double) Math.ceil( price_out/price_in*100 ) ).intValue();
+               // int go = result.intValue();
                 while (progressStatus < go) {
-                    progressStatus += 5;
+                    progressStatus += 1;
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         public void run() {
                             mProgressBar.setProgress(progressStatus);
+                            priceShow.setText(""+progressStatus+"%");
 
                             i++;
                         }
@@ -140,12 +141,13 @@ public class MainActivity extends AppCompatActivity {
             int progressStatus = 0;
 
             public void run() {
-                Double result = (price_in-price_out)/price_in*100;
-                int go = result.intValue();
+              //  Double result = (price_in-price_out)/price_in*100;
+                int go = ( (Double) ((price_in-price_out)/price_in*100 )).intValue();
+              //  int go = result.intValue();
                 while (progressStatus < go) {
-                    progressStatus += 5;
+                    progressStatus += 1;
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -153,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         public void run() {
                             disProgressBar.setProgress(progressStatus);
+                            discountShow.setText("" + progressStatus +"%");
                             i++;
                         }
                     });
@@ -255,14 +258,19 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 if (!Input.getText().toString().trim().isEmpty()) {
                     discount1 = Double.parseDouble(Input.getText().toString());
-                }
+                }else discount1 = 0.0;
                 break;
             case 1:
                 if (!Input.getText().toString().trim().isEmpty()) {
                     discount1 = Double.parseDouble(Input.getText().toString());
-                }
+                }else
                 if (!field1.getText().toString().trim().isEmpty()) {
                     discount2 = Double.parseDouble(field1.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
                 }
                 break;
             case 2:
@@ -274,6 +282,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!field2.getText().toString().trim().isEmpty()) {
                     discount3 = Double.parseDouble(field2.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
+                }else if(field2.getText().toString().trim().isEmpty()){
+                    discount3 = 0.0;
                 }
                 break;
             case 3:
@@ -288,6 +303,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!field3.getText().toString().trim().isEmpty()) {
                     discount4 = Double.parseDouble(field3.getText().toString());
+                }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
+                }else if(field2.getText().toString().trim().isEmpty()){
+                    discount3 = 0.0;
+                }else if(field3.getText().toString().trim().isEmpty()){
+                    discount4 = 0.0;
                 }
                 break;
             case 4:
@@ -306,6 +330,18 @@ public class MainActivity extends AppCompatActivity {
                 if (!field4.getText().toString().trim().isEmpty()) {
                     discount5 = Double.parseDouble(field4.getText().toString());
                 }
+                else if(Input.getText().toString().trim().isEmpty()){
+                    discount1 = 0.0;
+                }else if(field1.getText().toString().trim().isEmpty()){
+                    discount2 = 0.0;
+                }else if(field2.getText().toString().trim().isEmpty()){
+                    discount3 = 0.0;
+                }else if(field3.getText().toString().trim().isEmpty()){
+                    discount4 = 0.0;
+                }
+                else if(field4.getText().toString().trim().isEmpty()){
+                    discount5 = 0.0;
+                }
                 break;
         }
 
@@ -314,7 +350,9 @@ public class MainActivity extends AppCompatActivity {
     private void cal_discount(){
         if (!swith.isChecked())///%
         {
-            price_in=Double.parseDouble(price_input.getText().toString());
+            if (!price_input.getText().toString().trim().isEmpty()) {
+                price_in=Double.parseDouble(price_input.getText().toString());
+            }else  Toast.makeText(getApplicationContext(), "กรุณาใส่ราคาสินค้าและส่วนลด", Toast.LENGTH_SHORT).show();
             price_out = price_in*(100-discount1)/100;
             price_out = price_out*(100-discount2)/100;
             price_out = price_out*(100-discount3)/100;

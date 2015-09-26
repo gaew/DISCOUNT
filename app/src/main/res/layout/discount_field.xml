@@ -4,28 +4,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00BFA5"
+            android:textColor="#ff9500"
+            android:textSize="15dp"
             android:text="ส่วนลดตาม"/>
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#A7FFEB"
+            android:gravity="center"
             android:inputType="numberDecimal"
+            android:textColor="#ff9500"
+            android:textSize="20dp"
             android:id="@+id/field_input"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#00BFA5"
-            android:id="@+id/field_unit"/>
+            android:id="@+id/index_unit"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
     </LinearLayout>
 </LinearLayout>

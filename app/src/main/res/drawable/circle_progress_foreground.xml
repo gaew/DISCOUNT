@@ -2,14 +2,15 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@android:id/progress">
         <shape
-            android:innerRadius="60dp"
+            android:innerRadius="35dp"
             android:shape="ring"
-            android:thickness="7dp">
+            android:thickness="15dp">
 
             <gradient
-                android:startColor="@android:color/holo_blue_bright"
-                android:endColor="@android:color/holo_blue_light"
+                android:startColor="#3262ff"
+                android:endColor="#3262ff"
                 android:type="sweep" />
         </shape>
+
     </item>
 </layer-list>
